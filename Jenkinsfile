@@ -35,6 +35,16 @@ pipeline{
                }
             }
         }
+         stage('Push JAR To Jfrog'){
+         when { expression {  params.action == 'create' } }
+
+            steps{
+               script{
+                   
+                   jarPush()
+               }
+            }
+        }
          stage('Integration Test maven'){
          when { expression {  params.action == 'create' } }
             steps{
